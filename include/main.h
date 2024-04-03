@@ -27,9 +27,12 @@ double divide(double num1, double num2);
 // !
 double factorial(double num1);
 // ^
-double exponent (double num, double exp);
-// | |
-double module (double num);
+double exponent(double num, double exp);
+// |x|
+double absolute(double num);
+// %
+double modulo(double num1, double num2);
 // root(4,2) = 2.0
-double root (double num, double root);
+double root(double num, double root);
+
 #endif
