@@ -25,7 +25,7 @@ double multiply(double num1, double num2);
 // /
 double divide(double num1, double num2);
 // !
-double factorial(double num1);
+double factorial(double num);
 // ^
 double exponent(double num, double exp);
 // |x|

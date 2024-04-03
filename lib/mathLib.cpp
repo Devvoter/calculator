@@ -56,9 +56,13 @@ double modulo(double num1, double num2) {
     return num1 % num2;
 }
 // root(4,2) = 2.0
+/*
+The root can be negative in conventional calculators,
+we should discuss this in the future.
+*/
 double root(double num, double root){
     if ((root <= 0) || (int(root) != root)) throw std::runtime_error("Incorrect root.");
-    if ((num < 0)   && (int(root) % 2 == 0)) throw std::runtime_error("Incorrect root and value"); // root from a negative number when root is even
+    if ((num < 0) && (int(root) % 2 == 0)) throw std::runtime_error("Incorrect root and value"); // root from a negative number when root is even
     double guess = num / root; // initial approximation
     double prev_guess = 0; // to store the previous approximation
     

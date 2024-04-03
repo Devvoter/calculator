@@ -8,7 +8,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #----Files----
 set(LIB_FILES lib/mathLib.cpp)
 set(SRC_FILES src/main.cpp)
-set(TEST_FILES src/mainMathFunkceTests.cpp)
+set(TEST_FILES src/mainMathFunctionTests.cpp)
+set(TEST_FILES src/advancedMathFunctionTests.cpp)
 
 #----Main Executable----
 add_executable(calculator ${SRC_FILES} ${LIB_FILES})
