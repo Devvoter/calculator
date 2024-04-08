@@ -10,7 +10,7 @@ set(LIB_FILES lib/mathLib.cpp)
 set(SRC_FILES src/main.cpp)
 set(TEST_FILES src/mainMathFunctionTests.cpp)
 set(TEST_FILES src/advancedMathFunctionTests.cpp)
-
+set(INCLUDE_DIRECTORIES_FILES include/main.h)
 #----Main Executable----
 add_executable(calculator ${SRC_FILES} ${LIB_FILES})
 
@@ -44,14 +44,14 @@ include(GoogleTest)
 gtest_discover_tests(runTests)
 
 #----DOXYGEN----
-find_package(Doxygen REQUIRED)
-if(Doxygen_FOUND)
-    add_custom_target(docs ALL
-        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-        COMMENT "Generating API documentation with Doxygen"
-        VERBATIM
-    )
-else()
-    message(FATAL_ERROR "Doxygen needs to be installed to generate the doxygen documentation")
-endif()
+# find_package(Doxygen REQUIRED)
+# if(Doxygen_FOUND)
+#     add_custom_target(docs ALL
+#         COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
+#         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+#         COMMENT "Generating API documentation with Doxygen"
+#         VERBATIM
+#     )
+# else()
+#     message(FATAL_ERROR "Doxygen needs to be installed to generate the doxygen documentation")
+# endif()

@@ -13,6 +13,9 @@
 #define ERROR_DIVIDE_ZERO -1
 #define ERROR_OUT_OF_RANGE 1337
 #define MAX_FAKTORIAL 165
+#define ERROR_VALUE -2
+
+
 #define EPSILON 1e-10
 
 // prototypes for funkcion

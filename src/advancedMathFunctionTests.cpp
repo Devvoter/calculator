@@ -16,11 +16,11 @@ TEST_F(TestMainFunkce, FacTest_2) {
 }
 
 TEST_F(TestMainFunkce, FacTest_3) {
-    EXPECT_EQ(-1, factorial(-2.0));
+    ASSERT_EQ(ERROR_VALUE, factorial(-2.0));
 }
 
 TEST_F(TestMainFunkce, ExpTest_1) {
-    EXPECT_EQ(1024.0, exponent(2.0, 10.0));
+    EXPECT_EQ(1024, exponent(2.0, 10.0));
 }
 
 TEST_F(TestMainFunkce, ExpTest_2) {
@@ -28,7 +28,7 @@ TEST_F(TestMainFunkce, ExpTest_2) {
 }
 
 TEST_F(TestMainFunkce, ExpTest_3) {
-    EXPECT_EQ(0.01, exponent(100.0, -1.0));
+    EXPECT_EQ(ERROR_VALUE, exponent(100.0, -1.0));
 }
 
 TEST_F(TestMainFunkce, AbsTest_1) {
