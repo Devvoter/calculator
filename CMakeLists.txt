@@ -5,24 +5,43 @@ project(calculator VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Use the standard project setup to handle various platform-specific settings
+# qt_standard_project_setup()
+set(CMAKE_AUTOMOC ON) 
+set(CMAKE_AUTORCC ON) 
+set(CMAKE_AUTOUIC ON)
+
+#----Include directories----
+set(INCLUDE_DIRECTORIES include)
+
 #----Files----
 set(LIB_FILES lib/mathLib.cpp)
-set(SRC_FILES src/main.cpp)
-set(TEST_FILES src/mainMathFunctionTests.cpp)
-set(TEST_FILES src/advancedMathFunctionTests.cpp)
-set(INCLUDE_DIRECTORIES_FILES include/main.h)
-#----Main Executable----
-add_executable(calculator ${SRC_FILES} ${LIB_FILES})
+set(SRC_FILES src/main.cpp src/mainwindow.cpp)
+set(UI_FILES src/mainwindow.ui)
+set(TEST_FILES src/mainMathFunctionTests.cpp src/advancedMathFunctionTests.cpp)
 
-#----GUI----
+#----Find Qt package----
 set(Qt6_DIR "/path/to/qt6/lib/cmake/Qt6")
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 
-if(Qt6_FOUND)
-    target_link_libraries(calculator PRIVATE Qt6::Widgets)
-else()
-    message(FATAL_ERROR "Qt6 not found. Please check your Qt6 installation.")
-endif()
+#----Main Executable----
+qt_add_executable(calculator
+    MANUAL_FINALIZATION
+    ${SRC_FILES}
+    ${LIB_FILES}
+    ${UI_FILES}
+)
+
+#----Link libraries----
+target_link_libraries(calculator PRIVATE Qt6::Widgets)
+
+#----Include directories----
+target_include_directories(calculator PRIVATE ${INCLUDE_DIRECTORIES})
+
+set_target_properties(calculator PROPERTIES
+    WIN32_EXECUTABLE ON
+    MACOSX_BUNDLE ON
+)
 
 #----GTESTS----
 include(FetchContent)
@@ -38,8 +57,8 @@ enable_testing()
 
 #----Testing Executable----
 add_executable(runTests ${TEST_FILES} ${LIB_FILES})
-target_include_directories(runTests PRIVATE ${CMAKE_SOURCE_DIR}/include)
-target_link_libraries(runTests gtest_main)
+target_include_directories(runTests PRIVATE ${INCLUDE_DIRECTORIES})
+target_link_libraries(runTests PRIVATE gtest_main)
 include(GoogleTest)
 gtest_discover_tests(runTests)
 
@@ -53,5 +72,10 @@ gtest_discover_tests(runTests)
 #         VERBATIM
 #     )
 # else()
-#     message(FATAL_ERROR "Doxygen needs to be installed to generate the doxygen documentation")
+#     message(STATUS "Doxygen not found, skipping documentation")
 # endif()
+
+#----Finalization for Qt----
+if (QT_VERSION_MAJOR EQUAL 6)
+    qt_finalize_executable(calculator)
+endif()
