@@ -40,6 +40,9 @@ QPushButton{
 	border-radius: 15px;
 	font: 700 18pt &quot;Segoe UI&quot;;
 }
+QFrame{
+	border: none;
+}
 /*******************************************************************/
 QPushButton#bt_divide, QPushButton#bt_multiply, QPushButton#bt_plus, QPushButton#bt_minus{
 	background-color: rgb(213, 236, 245);
@@ -542,7 +545,7 @@ QPushButton#bt_help:hover{
      </rect>
     </property>
     <property name="text">
-     <string>1+2+</string>
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -558,7 +561,7 @@ QPushButton#bt_help:hover{
      </rect>
     </property>
     <property name="text">
-     <string>123</string>
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
