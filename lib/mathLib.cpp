@@ -25,7 +25,7 @@ double multiply(double num1, double num2) {
 // /
 double divide(double num1, double num2) {
 
-    if(num2 == 0) throw ERROR_DIVIDE_ZERO;
+    if(num2 == 0) return ERROR_DIVIDE_ZERO;
     return (num1 / num2);
 }
 // x!
@@ -44,12 +44,10 @@ double exponent(double num, double exp) {
     if (exp == 0) return 1;
 
 
-    double number = num;
-    for (int i = 1; i < exp; i++) {
-        num*= number;
-    }
-    
-    return num;
+    double result = num;
+    for (int i = 1; i < exp; i++) result*= num;
+
+    return result;
 }
 // |x|
 double absolute(double num) {
@@ -62,20 +60,29 @@ double modulo(double num1, double num2) {
 }
 // root(4,2) = 2.0
 /*
-The root can be negative in conventional calculators,
+The root can be negative in conventional calculators, 
 we should discuss this in the future.
 */
-double root(double num, double root){
-    if ((root <= 0) || (int(root) != root)) return ERROR_VALUE; 
-    if ((num < 0) && (int(root) % 2 == 0)) return ERROR_VALUE; // root from a negative number when root is even
-    double guess = num / root; // initial approximation
-    double prev_guess = 0; // to store the previous approximation
+
+/*  odpovidam na otazku nahore
+    ja bych to ted neresil a nechal bez tej zapornej odmocniny 
+    protoze mame jeste dost co musime udelat, pokud zustane cas tak dodelame
+     
+     -Denys  
+
+*/
+// Function to calculate the nth root of a number using Newton's method
+double root(double num, double root) {
+    if (root <= 0 || (int)(root) != root) return ERROR_VALUE; // root must be a positive integer
+    if (num < 0 && (int)(root) % 2 == 0) return ERROR_VALUE; // No even root of a negative number
+
+    double guess = num / root; // Initial guess for Newton's method
+    double prev_guess = 0;
     
-    // until the difference between the current and previous guesses is less than epsilon
-    while(absolute(guess - prev_guess) > EPSILON) {
+    // Iterating until the difference between two consecutive guesses is less than EPSILON
+    while (absolute(guess - prev_guess) > EPSILON) {
         prev_guess = guess;
-        // update the guess (more .. Newton's method formula for nth root)
-        guess = ((root - 1) * guess + num / exponent(guess, root - 1)) / num;
+        guess = ((root - 1) * prev_guess + num / exponent(prev_guess, root - 1)) / root; // Newton's formula
     }
     return guess;
 }

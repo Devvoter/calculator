@@ -56,13 +56,21 @@ TEST_F(TestMainFunkce, ModTest_3) {
 }
 
 TEST_F(TestMainFunkce, RooTest_1) {
-    EXPECT_EQ(10.0, root(-2.0, 1.0));
+    EXPECT_EQ(2.0, root(4.0, 2.0));
 }
 
 TEST_F(TestMainFunkce, RooTest_2) {
-    EXPECT_EQ(-17.0, root(-117.0, 100.0));
+    EXPECT_EQ(4.0, root(4.0, 1.0));
 }
 
 TEST_F(TestMainFunkce, RooTest_3) {
-    EXPECT_EQ(17.0, root(117.0, -100.0));
+    EXPECT_EQ(ERROR_VALUE, root(4.0, 0.0));
+}
+
+TEST_F(TestMainFunkce, RooTest_4) {
+    EXPECT_EQ(ERROR_VALUE, root(-25.0, 2.0));
+}
+
+TEST_F(TestMainFunkce, RooTest_5) {
+    EXPECT_EQ(-2.0, root(-8.0, 3.0));
 }

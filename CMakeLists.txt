@@ -19,6 +19,7 @@ set(LIB_FILES lib/mathLib.cpp)
 set(SRC_FILES src/main.cpp src/mainwindow.cpp)
 set(UI_FILES src/mainwindow.ui)
 set(TEST_FILES src/mainMathFunctionTests.cpp src/advancedMathFunctionTests.cpp)
+set(IN_FILES include/main.h include/mainwindow.h include/ui_mainwindow.h)
 
 #----Find Qt package----
 set(Qt6_DIR "/path/to/qt6/lib/cmake/Qt6")
@@ -30,6 +31,7 @@ qt_add_executable(calculator
     ${SRC_FILES}
     ${LIB_FILES}
     ${UI_FILES}
+    ${IN_FILES}
 )
 
 #----Link libraries----

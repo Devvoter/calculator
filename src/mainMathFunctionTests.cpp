@@ -12,7 +12,7 @@ TEST_F(TestMainFunkce, AddTest_1) {
 }
 
 TEST_F(TestMainFunkce, AddTest_2) {
-    EXPECT_EQ(0.6, add(-2.0, 1.4));
+    EXPECT_NEAR(-0.6, add(-2.0, 1.4), 1e-9);
 }
 
 TEST_F(TestMainFunkce, SubTest_1) {
@@ -20,7 +20,7 @@ TEST_F(TestMainFunkce, SubTest_1) {
 }
 
 TEST_F(TestMainFunkce, SubTest_2) {
-    EXPECT_EQ(42.01, subtract(100.23, 58.21));
+    EXPECT_EQ(42.02, subtract(100.23, 58.21));
 }
 
 TEST_F(TestMainFunkce, SubTest_3) {
@@ -48,5 +48,5 @@ TEST_F(TestMainFunkce, DivTest_2) {
 }
 
 TEST_F(TestMainFunkce, DivTest_3) {
-    EXPECT_EQ(-1, divide(13.31, 0.0));
+    EXPECT_EQ(ERROR_DIVIDE_ZERO, divide(13.31, 0.0));
 }
