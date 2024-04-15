@@ -64,6 +64,11 @@ target_link_libraries(runTests PRIVATE gtest_main)
 include(GoogleTest)
 gtest_discover_tests(runTests)
 
+#----Profiling Executable----
+add_executable(stddev profiling/stddev.cpp lib/mathLib.cpp)
+target_compile_options(stddev PRIVATE -pg)
+target_link_options(stddev PRIVATE -pg)
+
 #----DOXYGEN----
 # find_package(Doxygen REQUIRED)
 # if(Doxygen_FOUND)

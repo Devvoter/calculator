@@ -1,14 +1,15 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-//#include "qtconfigmacros.h"
+#include "main.h"
+
 #include <QMainWindow>
 
-//QT_BEGIN_NAMESPACE
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
 }
-//QT_END_NAMESPACE
+QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
@@ -19,9 +20,14 @@ public:
     ~MainWindow();
 
     //declare variables
-    QString lb_long_string; //string that will be displayed at label lb_string
-    QString lb_number_string; //string that will be displayed at label lb_number
+    QString lb_long_string = ""; //string that will be displayed at label lb_string
+    QString lb_number_string = ""; //string that will be displayed at label lb_number
     bool operation_pressed = false; //true if op button pressed - it will clear out the lb_number label
+    double operand_1 = 0; //parameter to math function
+    double operand_2 = 0; //parameter to math function
+    double result = 0; //return value of math function
+    QString operation = ""; //stores pressed operation for evaluation
+    bool negative = false; //sets if the given number is negative
 
 private slots:
     //displays help in help.html file
@@ -50,6 +56,11 @@ private slots:
     void on_bt_equal_released();
     void on_bt_del_released();
     void on_bt_ac_released();
+
+    //function that computes and exec the operations
+    //operation - string conteaining operation
+    //operation_type - 0 stands for one operand operation (square, square root, ...), 1 for two operands operation (+, -, ...)
+    void evaluate(bool operation_type);
 
 private:
     Ui::MainWindow *ui;
