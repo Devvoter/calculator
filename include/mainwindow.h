@@ -27,6 +27,7 @@ public:
     double operand_2 = 0; //parameter to math function
     double result = 0; //return value of math function
     QString operation = ""; //stores pressed operation for evaluation
+    bool negative = false; //sets if the given number is negative
 
 private slots:
     //displays help in help.html file
