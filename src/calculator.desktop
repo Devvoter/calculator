@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/calculator
+Icon=calculator
+Name=DIY
+Terminal=false
+Categories=Utility;Application;
