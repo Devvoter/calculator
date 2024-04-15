@@ -1,18 +1,25 @@
-Nice, mas to stiahnute
-Vela stastia na IOS projekte
-Vidime sa buduci tyzden
+# Kalkulačka pre 2. projekt IVS
 
-CO MA BYT V README (z prednasky):
--Nazov projektu
--Autori
--Strucny popis funkcie programu
-        --co to robi
-        --screenshot s gui ak to ma gui
-        --priklady spustenia (pozor, tu treba aby priklady boli 100% funkcne, inac hanba)
--Licencia (mozem pouzit zadarmo alebo musim platit...)
--Instalacne instrukcie (ako to sprovoznit)
-        --zavislosti
-        --sekvencia prikazov / postup ako to rozjet
--Ako prispievat (ak je to open source)
-        --napriklad, "posielajte pull requesty emanuelovi ak chcete pomoct s kodom"
--Cokolvek dalsieho co dava zmysel
+## Popis 
+
+## Inštalácia 
+
+## Prostredie
+
+Tento projekt bol vyvíjaný a testovaný v prostredí:
+
+- Ubuntu 64bit
+
+## Autori
+
+Tím "Don't IVS Yourself":
+
+- [xpylypd00]( Denys Pylypenko )
+- [xvesela00]( Adam Veselý )
+- [xkremee00]( Eliška Křeménková )
+- [xcomovj00]( Jaroslava Comová )
+
+## Licencia
+
+Tento projekt je poskytovaný pod licenciou [GNU General Public License v3.0](LICENCE.md).
+
