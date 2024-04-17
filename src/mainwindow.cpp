@@ -3,7 +3,7 @@
 
 //#include <QKeyEvent>
 //#include <QDesktopServices>
-#include <QDebug>
+//#include <QDebug>
 #include <QObject>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -29,6 +29,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->bt_minus, SIGNAL(released()), this, SLOT(bt_basic_op_pressed()));
     connect(ui->bt_multiply, SIGNAL(released()), this, SLOT(bt_basic_op_pressed()));
     connect(ui->bt_divide, SIGNAL(released()), this, SLOT(bt_basic_op_pressed()));
+
+    //clear the labels
+    ui->lb_long->setText("");
+    ui->lb_number->setText("");
 }
 
 MainWindow::~MainWindow()
@@ -42,7 +46,6 @@ void MainWindow::on_bt_help_released(){
     lb_long_string += "help";
     ui->lb_long->setText(lb_long_string);
     //QDesktopServices::openUrl(QUrl::fromLocalFile("help.html"));
-    //qDebug() << "test_help";
 }
 
 //add digit to string and display it
