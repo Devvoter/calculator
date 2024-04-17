@@ -5,6 +5,7 @@
 //#include <QDesktopServices>
 //#include <QDebug>
 #include <QObject>
+#include <cctype>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -29,10 +30,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->bt_minus, SIGNAL(released()), this, SLOT(bt_basic_op_pressed()));
     connect(ui->bt_multiply, SIGNAL(released()), this, SLOT(bt_basic_op_pressed()));
     connect(ui->bt_divide, SIGNAL(released()), this, SLOT(bt_basic_op_pressed()));
-
-    //clear the labels
-    ui->lb_long->setText("");
-    ui->lb_number->setText("");
 }
 
 MainWindow::~MainWindow()
@@ -51,13 +48,11 @@ void MainWindow::on_bt_help_released(){
 //add digit to string and display it
 void MainWindow::bt_digit_pressed(){
     //if true, clear lb_number for a new input
-    if (operation_pressed)
-    {
+    if (operation_pressed){
         lb_number_string = "";
         operation_pressed = false;
     }
     QPushButton * button = (QPushButton*)sender();
-    //QPushButton* button = qobject_cast<QPushButton*>(sender());
     lb_long_string += button->text();
     ui->lb_long->setText(lb_long_string);
     lb_number_string += button->text();
@@ -65,6 +60,9 @@ void MainWindow::bt_digit_pressed(){
 }
 
 void MainWindow::on_bt_point_released(){
+    if (check_errors(".")){
+        return;
+    }    
     lb_long_string += ".";
     ui->lb_long->setText(lb_long_string);
     lb_number_string += ".";
@@ -74,7 +72,6 @@ void MainWindow::on_bt_point_released(){
 void MainWindow::on_bt_inverse_released(){
     if (!operation_pressed){ //if the last presseddn button was number - invert, otherwise do nothing
         if (negative){        
-            //lb_long_string.lastIndexOf()
             lb_long_string.remove(lb_long_string.length() - lb_number_string.length() - 2, 2); //cuts the last occurrence of "(-"
             lb_long_string.chop(1); //cuts the last character, ")"
             lb_number_string.remove('-'); //cuts the negative sign of the number
@@ -92,83 +89,127 @@ void MainWindow::on_bt_inverse_released(){
 }
 
 void MainWindow::bt_basic_op_pressed(){
+    operation_pressed = true;    
     QPushButton * button = (QPushButton*)sender();
-    //QPushButton* button = qobject_cast<QPushButton*>(sender());
+    if (check_errors(button->text())){
+        return;
+    }
     lb_long_string += button->text();
-    ui->lb_long->setText(lb_long_string);
-    operation_pressed = true;
+    ui->lb_long->setText(lb_long_string); 
+    operation = button->text();   
     //execution of the operation
     evaluate(1);
-    operation = button->text();
 }
     
 void MainWindow::on_bt_modulo_released(){
+    operation_pressed = true;
+    if (check_errors("%")){
+        return;
+    }
     lb_long_string += "%";
     ui->lb_long->setText(lb_long_string);
-    operation_pressed = true;
-    evaluate(1);
     operation = "%";
+    evaluate(1);
 }
 void MainWindow::on_bt_abs_released(){
+    operation_pressed = true;
+    if (check_errors("abs")){
+        return;
+    }
     lb_long_string += "abs";
     ui->lb_long->setText(lb_long_string);
-    operation_pressed = true;
+    operation = "abs";
 }
 void MainWindow::on_bt_square_released(){
-    lb_long_string += "^2";
-    ui->lb_long->setText(lb_long_string);
     operation_pressed = true;
-    operation = "^2";
+    if (check_errors("^2")){
+        return;
+    }
+    lb_long_string += "^2";
+    ui->lb_long->setText(lb_long_string); 
+    operation = "^2";   
     evaluate(0);
 }
 void MainWindow::on_bt_exp_released(){
+    operation_pressed = true;
+    if (check_errors("^")){
+        return;
+    }
     lb_long_string += "^"; 
     ui->lb_long->setText(lb_long_string);
-    operation_pressed = true;
-    evaluate(1);
     operation = "^n";
+    evaluate(1);
 }
 void MainWindow::on_bt_square_root_released(){
+    operation_pressed = true;
+    if (check_errors("√")){
+        return;
+    }
     lb_long_string += "√";
     ui->lb_long->setText(lb_long_string);
-    operation_pressed = true;
     operation = "√";
     evaluate(0);
 }
 void MainWindow::on_bt_n_root_released(){
+    operation_pressed = true;
+    if (check_errors("ⁿ√")){
+        return;
+    }
     lb_long_string += "ⁿ√"; //to-do: insert the input root
     ui->lb_long->setText(lb_long_string);
-    operation_pressed = true;
-    evaluate(1);
     operation = "ⁿ√";
+    evaluate(1);
 }
 void MainWindow::on_bt_factorial_released(){
+    operation_pressed = true;
+    if (check_errors("!")){
+        return;
+    }
     lb_long_string += "!";
     ui->lb_long->setText(lb_long_string);
-    operation_pressed = true;
     operation = "!";
     evaluate(0);
 }
 
 void MainWindow::on_bt_equal_released(){
+    if (check_errors("=")){
+        return;
+    }
     lb_long_string += "=";
     ui->lb_long->setText(lb_long_string);
     evaluate(1);
     lb_long_string += QString::number(result);
     ui->lb_long->setText(lb_long_string);
-    on_bt_ac_released();
+    lb_long_string = "";
+    lb_number_string = "";
+    operation_pressed = false;
+    operand_1 = 0; 
+    operand_2 = 0; 
+    result = 0; 
+    operation = ""; 
+    negative = false;
 }
 void MainWindow::on_bt_del_released(){
     if (lb_long_string != ""){
         lb_long_string.chop(1); //removes last character
+        ui->lb_long->setText(lb_long_string);
     }
     if (lb_number_string != ""){
         lb_number_string.chop(1);
+        ui->lb_number->setText(lb_number_string);
     }
 }
 void MainWindow::on_bt_ac_released(){
     lb_long_string = "";
+    ui->lb_long->setText(lb_long_string);
     lb_number_string = "";
+    ui->lb_number->setText(lb_number_string);    
+    operation_pressed = false;
+    operand_1 = 0; 
+    operand_2 = 0; 
+    result = 0; 
+    operation = ""; 
+    negative = false;
 }
 
 void MainWindow::evaluate(bool operation_type){
@@ -272,4 +313,39 @@ void MainWindow::evaluate(bool operation_type){
     lb_number_string = QString::number(result);
     ui->lb_number->setText(lb_number_string);
     operand_1 = result;
+}
+
+bool MainWindow::check_errors(QString bt_check){
+    //number starts with "."
+    if (bt_check == "." && operation_pressed){
+        ui->lb_long->setText("check_point_start");
+        return true;
+    }
+    //two dots
+    if (bt_check == "." && lb_number_string.last(1) == '.'){
+        ui->lb_long->setText("check_two_point");
+        return true;
+    }
+    //number ends with ".", dot after dot
+    if ((operation_pressed || bt_check == "=") && lb_long_string.last(1) == '.'){
+        ui->lb_long->setText("check_point_end");
+        operation_pressed = false;
+        return true;
+    }
+    //expresion cant start with an operation
+    if (lb_long_string == ""){
+        ui->lb_long->setText("check_op_start");
+        return true;
+    }
+    //expresion cant end with an operation
+    if (bt_check == "=" && (lb_long_string.last(1) == "+" || lb_long_string.last(1) == "-" || lb_long_string.last(1) == "*" || lb_long_string.last(1) == "/" || lb_long_string.last(1) == "%" || lb_long_string.last(2) == "^n" || lb_long_string.last(2) == "ⁿ√")){ 
+        ui->lb_long->setText("check_op_end");
+        return true;
+    }
+    //operations cant be entered after two operand operations operation
+    if (!isdigit(lb_long_string[lb_long_string.length() - 1].toLatin1()) && (lb_long_string.last(1) == "+" || lb_long_string.last(1) == "-" || lb_long_string.last(1) == "*" || lb_long_string.last(1) == "/" || lb_long_string.last(1) == "%" || lb_long_string.last(2) == "^n" || lb_long_string.last(2) == "ⁿ√")){
+        ui->lb_long->setText("check_two_op");
+        return true;
+    }    
+    return false;
 }

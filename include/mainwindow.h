@@ -26,8 +26,9 @@ public:
     double operand_1 = 0; //parameter to math function
     double operand_2 = 0; //parameter to math function
     double result = 0; //return value of math function
-    QString operation = ""; //stores pressed operation for evaluation
+    QString operation = ""; //stores pressed operation for evaluation 
     bool negative = false; //sets if the given number is negative
+    QString bt_check = "";
 
 private slots:
     //displays help in help.html file
@@ -61,6 +62,9 @@ private slots:
     //operation - string conteaining operation
     //operation_type - 0 stands for one operand operation (square, square root, ...), 1 for two operands operation (+, -, ...)
     void evaluate(bool operation_type);
+    
+    //handle errors
+    bool check_errors(QString bt_text);
 
 private:
     Ui::MainWindow *ui;
