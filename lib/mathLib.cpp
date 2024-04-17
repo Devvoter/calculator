@@ -54,23 +54,17 @@ double absolute(double num) {
     if (num < 0) return -num;
     return num;
 }
+// x --> -x
+double inverse(double num) {
+    return -num;
+}
+
 // %
 double modulo(double num1, double num2) {
     return (int)num1 % (int)num2;
 }
+
 // root(4,2) = 2.0
-/*
-The root can be negative in conventional calculators, 
-we should discuss this in the future.
-*/
-
-/*  odpovidam na otazku nahore
-    ja bych to ted neresil a nechal bez tej zapornej odmocniny 
-    protoze mame jeste dost co musime udelat, pokud zustane cas tak dodelame
-     
-     -Denys  
-
-*/
 // Function to calculate the nth root of a number using Newton's method
 double root(double num, double root) {
     if (root <= 0 || (int)(root) != root) return ERROR_VALUE; // root must be a positive integer
