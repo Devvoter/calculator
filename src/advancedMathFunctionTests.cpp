@@ -43,6 +43,30 @@ TEST_F(TestMainFunkce, AbsTest_3) {
     EXPECT_EQ(10.0, absolute(-10.0));
 }
 
+TEST_F(TestMainFunkce, SignTest_1) {
+    EXPECT_EQ(-10.0, sign(10));
+}
+
+TEST_F(TestMainFunkce, SignTest_2) {
+    EXPECT_EQ(0.1, sign(-0.1));
+}
+
+TEST_F(TestMainFunkce, SignTest_3) {
+    EXPECT_EQ(10.5, sign(-10.5));
+}
+
+TEST_F(TestMainFunkce, InverseTest_1) {
+    EXPECT_EQ(0.5, inverse(2.0));
+}
+
+TEST_F(TestMainFunkce, InverseTest_2) {
+    EXPECT_EQ(-0.5, inverse(-2.0));
+}
+
+TEST_F(TestMainFunkce, InverseTest_3) {
+    EXPECT_EQ(ERROR_DIVIDE_ZERO, inverse(0.0));
+}
+
 TEST_F(TestMainFunkce, ModTest_1) {
     EXPECT_EQ(10.0, modulo(10.0, 20.0));
 }

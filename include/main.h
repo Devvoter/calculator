@@ -33,6 +33,10 @@ double factorial(double num);
 double exponent(double num, double exp);
 // |x|
 double absolute(double num);
+// x --> -x
+double sign(double num);
+// x --> 1/x
+double inverse(double num);
 // %
 double modulo(double num1, double num2);
 // root(4,2) = 2.0
