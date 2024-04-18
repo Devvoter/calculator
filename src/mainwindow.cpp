@@ -2,10 +2,11 @@
 #include "../include/ui_mainwindow.h"
 
 //#include <QKeyEvent>
-//#include <QDesktopServices>
+#include <QDesktopServices>
+#include <QUrl>
 //#include <QDebug>
 #include <QObject>
-#include <cctype>
+#include <QtCore>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -24,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->bt_7, SIGNAL(released()), this, SLOT(bt_digit_pressed()));
     connect(ui->bt_8, SIGNAL(released()), this, SLOT(bt_digit_pressed()));
     connect(ui->bt_9, SIGNAL(released()), this, SLOT(bt_digit_pressed()));
+    connect(ui->bt_00, SIGNAL(released()), this, SLOT(bt_digit_pressed()));
 
     //connecting basic operations buttons
     connect(ui->bt_plus, SIGNAL(released()), this, SLOT(bt_basic_op_pressed()));
@@ -42,7 +44,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_bt_help_released(){
     lb_long_string += "help";
     ui->lb_long->setText(lb_long_string);
-    //QDesktopServices::openUrl(QUrl::fromLocalFile("help.html"));
+    QDesktopServices::openUrl(QUrl("help.html", QUrl::TolerantMode));
 }
 
 //add digit to string and display it
@@ -69,23 +71,36 @@ void MainWindow::on_bt_point_released(){
     ui->lb_number->setText(lb_number_string);
 }
 
-void MainWindow::on_bt_inverse_released(){
-    if (!operation_pressed){ //if the last presseddn button was number - invert, otherwise do nothing
+void MainWindow::on_bt_sign_released(){
+    if (!operation_pressed){ //if the last pressed button was number - change sign, otherwise do nothing
         if (negative){        
             lb_long_string.remove(lb_long_string.length() - lb_number_string.length() - 2, 2); //cuts the last occurrence of "(-"
             lb_long_string.chop(1); //cuts the last character, ")"
-            lb_number_string.remove('-'); //cuts the negative sign of the number
+            double num = sign(lb_number_string.toDouble());
+            lb_number_string = QString::number(num);            
             negative = false;   
         }
         else{
             lb_long_string.insert(lb_long_string.length() - lb_number_string.length(), "(-"); //insert "(-" before number
-            lb_long_string.append(')'); //apeend ")" at the end of the string
-            lb_number_string = "-" + lb_number_string; //adds "-" in front of the number
+            lb_long_string.append(')'); //append ")" at the end of the string
+            double num = sign(lb_number_string.toDouble());
+            lb_number_string = QString::number(num);            
             negative = true;
         }
         ui->lb_long->setText(lb_long_string);
         ui->lb_number->setText(lb_number_string);
     } 
+}
+
+void MainWindow::on_bt_inverse_released(){
+    if (!operation_pressed){ //if the last pressed button was number - invert, otherwise do nothing        
+        lb_long_string.chop(lb_number_string.length()); //cuts the last number and replaces it with inverted one
+        double num = inverse(lb_number_string.toDouble());
+        lb_number_string = QString::number(num);
+        lb_long_string.append(lb_number_string); //appends new inverted number at the end of the string
+        ui->lb_long->setText(lb_long_string);
+        ui->lb_number->setText(lb_number_string);
+    }
 }
 
 void MainWindow::bt_basic_op_pressed(){
@@ -95,10 +110,10 @@ void MainWindow::bt_basic_op_pressed(){
         return;
     }
     lb_long_string += button->text();
-    ui->lb_long->setText(lb_long_string); 
-    operation = button->text();   
+    ui->lb_long->setText(lb_long_string);        
     //execution of the operation
     evaluate(1);
+    operation = button->text();
 }
     
 void MainWindow::on_bt_modulo_released(){
@@ -108,17 +123,20 @@ void MainWindow::on_bt_modulo_released(){
     }
     lb_long_string += "%";
     ui->lb_long->setText(lb_long_string);
-    operation = "%";
     evaluate(1);
+    operation = "%";
 }
 void MainWindow::on_bt_abs_released(){
     operation_pressed = true;
     if (check_errors("abs")){
         return;
     }
-    lb_long_string += "abs";
+    lb_long_string.prepend("|");
+    lb_long_string.append("|");
     ui->lb_long->setText(lb_long_string);
+    evaluate(1);
     operation = "abs";
+    evaluate(0);
 }
 void MainWindow::on_bt_square_released(){
     operation_pressed = true;
@@ -126,9 +144,10 @@ void MainWindow::on_bt_square_released(){
         return;
     }
     lb_long_string += "^2";
-    ui->lb_long->setText(lb_long_string); 
-    operation = "^2";   
-    evaluate(0);
+    ui->lb_long->setText(lb_long_string);
+    evaluate(1);
+    operation = "^2"; 
+    evaluate(0);       
 }
 void MainWindow::on_bt_exp_released(){
     operation_pressed = true;
@@ -137,28 +156,29 @@ void MainWindow::on_bt_exp_released(){
     }
     lb_long_string += "^"; 
     ui->lb_long->setText(lb_long_string);
-    operation = "^n";
     evaluate(1);
+    operation = "^n";
 }
 void MainWindow::on_bt_square_root_released(){
     operation_pressed = true;
     if (check_errors("√")){
         return;
     }
-    lb_long_string += "√";
+    lb_long_string.insert(lb_long_string.length() - lb_number_string.length(), "√");
     ui->lb_long->setText(lb_long_string);
+    evaluate(TWO_OPERAND_TYPE);
     operation = "√";
-    evaluate(0);
+    evaluate(ONE_OPERAND_TYPE);    
 }
 void MainWindow::on_bt_n_root_released(){
     operation_pressed = true;
     if (check_errors("ⁿ√")){
         return;
     }
-    lb_long_string += "ⁿ√"; //to-do: insert the input root
+    lb_long_string += "^1/"; //to-do: insert the input root
     ui->lb_long->setText(lb_long_string);
+    evaluate(TWO_OPERAND_TYPE);
     operation = "ⁿ√";
-    evaluate(1);
 }
 void MainWindow::on_bt_factorial_released(){
     operation_pressed = true;
@@ -167,8 +187,9 @@ void MainWindow::on_bt_factorial_released(){
     }
     lb_long_string += "!";
     ui->lb_long->setText(lb_long_string);
+    evaluate(TWO_OPERAND_TYPE);
     operation = "!";
-    evaluate(0);
+    evaluate(ONE_OPERAND_TYPE);
 }
 
 void MainWindow::on_bt_equal_released(){
@@ -177,39 +198,25 @@ void MainWindow::on_bt_equal_released(){
     }
     lb_long_string += "=";
     ui->lb_long->setText(lb_long_string);
-    evaluate(1);
+    evaluate(TWO_OPERAND_TYPE);
     lb_long_string += QString::number(result);
     ui->lb_long->setText(lb_long_string);
-    lb_long_string = "";
-    lb_number_string = "";
-    operation_pressed = false;
-    operand_1 = 0; 
-    operand_2 = 0; 
-    result = 0; 
-    operation = ""; 
-    negative = false;
+    store_result = result;
+    //resets values
+    RESET_VALUES
 }
-void MainWindow::on_bt_del_released(){
-    if (lb_long_string != ""){
-        lb_long_string.chop(1); //removes last character
-        ui->lb_long->setText(lb_long_string);
-    }
-    if (lb_number_string != ""){
-        lb_number_string.chop(1);
-        ui->lb_number->setText(lb_number_string);
-    }
+
+void MainWindow::on_bt_ans_released(){
+    lb_long_string += "Ans";
+    ui->lb_long->setText(lb_long_string);    
+    lb_number_string = QString::number(store_result);
+    ui->lb_number->setText(lb_number_string);
 }
+
 void MainWindow::on_bt_ac_released(){
-    lb_long_string = "";
+    RESET_VALUES
     ui->lb_long->setText(lb_long_string);
-    lb_number_string = "";
-    ui->lb_number->setText(lb_number_string);    
-    operation_pressed = false;
-    operand_1 = 0; 
-    operand_2 = 0; 
-    result = 0; 
-    operation = ""; 
-    negative = false;
+    ui->lb_number->setText(lb_number_string);
 }
 
 void MainWindow::evaluate(bool operation_type){
@@ -278,15 +285,24 @@ void MainWindow::evaluate(bool operation_type){
                     ui->lb_long->setText("root must be positive integer (n>0)");
                     return;
                 }                
-            }           
-        }        
+            }            
+        }
     }
     else{
         //advanced operations
         operand_1 = lb_number_string.toDouble();
         // |x|
+        if (operation == "abs"){
+            if (result == 0){
+                result = absolute(operand_1);
+            }
+            else{
+                result = absolute(operand_1);
+            }
+            
+        }        
         // x^2
-        if (operation == "^2"){
+        else if (operation == "^2"){
             result = exponent(operand_1, 2);
         }
         // √
@@ -299,7 +315,13 @@ void MainWindow::evaluate(bool operation_type){
                 return;
             }
         }
-        else if (operation == "!"){
+        else if (operation == "!"){                        
+            if (operand_1 >= MAX_FAKTORIAL){
+                on_bt_ac_released();
+                ui->lb_number->setText("Error:");
+                ui->lb_long->setText("number is too big");
+                return;
+            }
             result = factorial(operand_1);
             if (result == ERROR_VALUE){
                 on_bt_ac_released();

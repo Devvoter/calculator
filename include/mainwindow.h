@@ -1,6 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#define ONE_OPERAND_TYPE 0  //if the operation takes one operand
+#define TWO_OPERAND_TYPE 1  //if the operation takes two operands
+#define RESET_VALUES lb_long_string = ""; lb_number_string = ""; operation_pressed = false; operand_1 = 0; operand_2 = 0; result = 0; operation = ""; negative = false; //reset all used variables
+
 #include "main.h"
 
 #include <QMainWindow>
@@ -26,8 +30,9 @@ public:
     double operand_1 = 0; //parameter to math function
     double operand_2 = 0; //parameter to math function
     double result = 0; //return value of math function
+    double store_result = 0; //function ans stores the result
     QString operation = ""; //stores pressed operation for evaluation 
-    bool negative = false; //sets if the given number is negative
+    bool negative = false; //sets if the given number is negative    
     QString bt_check = "";
 
 private slots:
@@ -40,7 +45,10 @@ private slots:
     //point
     void on_bt_point_released();
 
-    //inverse number - upřímně bych to nejradši smazala
+    //sign number
+    void on_bt_sign_released();
+
+    //inverse number
     void on_bt_inverse_released();
 
     //basic operations buttons (+,-,*,/) merged
@@ -55,7 +63,7 @@ private slots:
     void on_bt_factorial_released();
     
     void on_bt_equal_released();
-    void on_bt_del_released();
+    void on_bt_ans_released(); //stores result, after button equal was pressed
     void on_bt_ac_released();
 
     //function that computes and exec the operations

@@ -34,7 +34,7 @@ public:
     QPushButton *bt_abs;
     QPushButton *bt_modulo;
     QPushButton *bt_0;
-    QPushButton *bt_inverse;
+    QPushButton *bt_sign;    
     QPushButton *bt_point;
     QPushButton *bt_1;
     QPushButton *bt_2;
@@ -50,7 +50,7 @@ public:
     QPushButton *bt_exp;
     QPushButton *bt_square_root;
     QPushButton *bt_n_root;
-    QPushButton *bt_del;
+    QPushButton *bt_inverse;    
     QPushButton *bt_ac;
     QPushButton *bt_ans;
     QPushButton *bt_00;
@@ -86,13 +86,13 @@ public:
 "	background-color: rgb(36, 30, 47);\n"
 "	border: 1px solid rgb(33, 135, 161);\n"
 "}\n"
-"/***************************************************del, ac***************************************************/\n"
-"#bt_del,  #bt_ac{\n"
+"/***************************************************ac***************************************************/\n"
+"#bt_ac{\n"
 "	background-color: rgb(33, 135, 161);\n"
 "	color: rgb(213, 236, 245);\n"
 "	font: 700 14pt \"Segoe UI\";\n"
 "}\n"
-"#bt_del:hover, #bt_ac:hover{\n"
+"#bt_ac:hover{\n"
 "	background-color: rgb(36, 30, 47);\n"
 "	border: 1px solid rgb(33, 1"
                         "35, 161);\n"
@@ -106,14 +106,14 @@ public:
 "	border: 1px solid rgb(33, 135, 161);\n"
 "}\n"
 "/***************************************************advanced ops***************************************************/\n"
-"#bt_modulo, #bt_abs, #bt_exp, #bt_factorial, #bt_square_root, #bt_n_root, #bt_square, #bt_inverse, #bt_ans{\n"
+"#bt_modulo, #bt_abs, #bt_exp, #bt_factorial, #bt_square_root, #bt_n_root, #bt_square, #bt_ans, #bt_sign, #bt_inverse{\n"
 "	background-color: rgb(36, 30, 47);\n"
 "	color: rgb(33, 135, 161);\n"
 "	font: 700 14pt \"Segoe UI\";\n"
 "}\n"
-"#bt_modulo:hover, #bt_abs:hover, #bt_exp:hover, #bt_factorial:hover, #bt_square_root:hover, #bt_n_root:hover, #bt_square:hover, #bt_inverse:hover, #bt_ans:hover{"
-                        "\n"
-"	border: 1px solid rgb(33, 135, 161);\n"
+"#bt_modulo:hover, #bt_abs:hover, #bt_exp:hover, #bt_factorial:hover, #bt_square_root:hover, #bt_n_root:hover, #bt_square:hover, #bt_ans:hover, #bt_sign:hover, #bt_inverse:hover{\n"
+""
+                        "	border: 1px solid rgb(33, 135, 161);\n"
 "}\n"
 "/***************************************************labels***************************************************/\n"
 "QLabel{\n"
@@ -188,9 +188,9 @@ public:
         bt_0 = new QPushButton(centralwidget);
         bt_0->setObjectName("bt_0");
         bt_0->setGeometry(QRect(20, 580, 60, 60));
-        bt_inverse = new QPushButton(centralwidget);
-        bt_inverse->setObjectName("bt_inverse");
-        bt_inverse->setGeometry(QRect(90, 160, 60, 60));
+        bt_sign = new QPushButton(centralwidget);
+        bt_sign->setObjectName("bt_sign");
+        bt_sign->setGeometry(QRect(90, 160, 60, 60));
         bt_point = new QPushButton(centralwidget);
         bt_point->setObjectName("bt_point");
         bt_point->setGeometry(QRect(160, 580, 60, 60));
@@ -236,9 +236,9 @@ public:
         bt_n_root = new QPushButton(centralwidget);
         bt_n_root->setObjectName("bt_n_root");
         bt_n_root->setGeometry(QRect(230, 230, 60, 60));
-        bt_del = new QPushButton(centralwidget);
-        bt_del->setObjectName("bt_del");
-        bt_del->setGeometry(QRect(160, 160, 60, 60));
+        bt_inverse = new QPushButton(centralwidget);
+        bt_inverse->setObjectName("bt_inverse");
+        bt_inverse->setGeometry(QRect(160, 160, 60, 60));
         bt_ac = new QPushButton(centralwidget);
         bt_ac->setObjectName("bt_ac");
         bt_ac->setGeometry(QRect(230, 160, 60, 60));
@@ -273,7 +273,7 @@ public:
         bt_abs->setText(QCoreApplication::translate("MainWindow", "|x|", nullptr));
         bt_modulo->setText(QCoreApplication::translate("MainWindow", "%", nullptr));
         bt_0->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        bt_inverse->setText(QCoreApplication::translate("MainWindow", "+/-", nullptr));
+        bt_sign->setText(QCoreApplication::translate("MainWindow", "+/-", nullptr));
         bt_point->setText(QCoreApplication::translate("MainWindow", ".", nullptr));
         bt_1->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
         bt_2->setText(QCoreApplication::translate("MainWindow", "2", nullptr));
@@ -289,7 +289,7 @@ public:
         bt_exp->setText(QCoreApplication::translate("MainWindow", "x\342\201\277", nullptr));
         bt_square_root->setText(QCoreApplication::translate("MainWindow", "\342\210\232x", nullptr));
         bt_n_root->setText(QCoreApplication::translate("MainWindow", "\342\201\277\342\210\232x", nullptr));
-        bt_del->setText(QCoreApplication::translate("MainWindow", "DEL", nullptr));
+        bt_inverse->setText(QCoreApplication::translate("MainWindow", "1/x", nullptr));
         bt_ac->setText(QCoreApplication::translate("MainWindow", "AC", nullptr));
         bt_ans->setText(QCoreApplication::translate("MainWindow", "Ans", nullptr));
         bt_00->setText(QCoreApplication::translate("MainWindow", "00", nullptr));

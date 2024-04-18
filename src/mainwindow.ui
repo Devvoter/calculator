@@ -53,13 +53,13 @@ QPushButton{
 	background-color: rgb(36, 30, 47);
 	border: 1px solid rgb(33, 135, 161);
 }
-/***************************************************del, ac***************************************************/
-#bt_del,  #bt_ac{
+/***************************************************ac***************************************************/
+#bt_ac{
 	background-color: rgb(33, 135, 161);
 	color: rgb(213, 236, 245);
 	font: 700 14pt &quot;Segoe UI&quot;;
 }
-#bt_del:hover, #bt_ac:hover{
+#bt_ac:hover{
 	background-color: rgb(36, 30, 47);
 	border: 1px solid rgb(33, 135, 161);
 }
@@ -72,12 +72,12 @@ QPushButton{
 	border: 1px solid rgb(33, 135, 161);
 }
 /***************************************************advanced ops***************************************************/
-#bt_modulo, #bt_abs, #bt_exp, #bt_factorial, #bt_square_root, #bt_n_root, #bt_square, #bt_inverse, #bt_ans{
+#bt_modulo, #bt_abs, #bt_exp, #bt_factorial, #bt_square_root, #bt_n_root, #bt_square, #bt_ans, #bt_sign, #bt_inverse{
 	background-color: rgb(36, 30, 47);
 	color: rgb(33, 135, 161);
 	font: 700 14pt &quot;Segoe UI&quot;;
 }
-#bt_modulo:hover, #bt_abs:hover, #bt_exp:hover, #bt_factorial:hover, #bt_square_root:hover, #bt_n_root:hover, #bt_square:hover, #bt_inverse:hover, #bt_ans:hover{
+#bt_modulo:hover, #bt_abs:hover, #bt_exp:hover, #bt_factorial:hover, #bt_square_root:hover, #bt_n_root:hover, #bt_square:hover, #bt_ans:hover, #bt_sign:hover, #bt_inverse:hover{
 	border: 1px solid rgb(33, 135, 161);
 }
 /***************************************************labels***************************************************/
@@ -153,24 +153,18 @@ QPushButton#bt_help:hover{
     <property name="text">
      <string/>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-    </property>
    </widget>
    <widget class="QLabel" name="lb_number">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>130</x>
       <y>50</y>
-      <width>150</width>
+      <width>160</width>
       <height>60</height>
      </rect>
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="bt_help">
@@ -295,7 +289,7 @@ QPushButton#bt_help:hover{
      <string>0</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="bt_inverse">
+   <widget class="QPushButton" name="bt_sign">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -503,7 +497,7 @@ QPushButton#bt_help:hover{
      <string>ⁿ√x</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="bt_del">
+   <widget class="QPushButton" name="bt_inverse">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -513,7 +507,7 @@ QPushButton#bt_help:hover{
      </rect>
     </property>
     <property name="text">
-     <string>DEL</string>
+     <string>1/x</string>
     </property>
    </widget>
    <widget class="QPushButton" name="bt_ac">
