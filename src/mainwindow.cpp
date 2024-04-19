@@ -44,7 +44,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_bt_help_released(){
     lb_long_string += "help";
     ui->lb_long->setText(lb_long_string);
-    QDesktopServices::openUrl(QUrl("help.html", QUrl::TolerantMode));
+    QDesktopServices::openUrl(QUrl("../src/help.html", QUrl::TolerantMode));
 }
 
 //add digit to string and display it
