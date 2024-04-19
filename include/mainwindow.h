@@ -52,7 +52,11 @@ private slots:
     void on_bt_inverse_released();
 
     //basic operations buttons (+,-,*,/) merged
-    void bt_basic_op_pressed();
+    //void bt_basic_op_pressed();
+    void on_bt_plus_released();
+    void on_bt_minus_released();
+    void on_bt_multiply_released();
+    void on_bt_divide_released();
     
     void on_bt_modulo_released();
     void on_bt_abs_released();
@@ -73,6 +77,12 @@ private slots:
     
     //handle errors
     bool check_errors(QString bt_text);
+
+    //writes number on display
+    void write_number_on_display(QString number);
+
+    //keyboard shortcuts
+    void keyPressEvent(QKeyEvent *event);
 
 private:
     Ui::MainWindow *ui;

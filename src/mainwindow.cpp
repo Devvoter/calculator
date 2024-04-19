@@ -1,10 +1,9 @@
 #include "../include/mainwindow.h"
 #include "../include/ui_mainwindow.h"
 
-//#include <QKeyEvent>
+#include <QKeyEvent>
 #include <QDesktopServices>
 #include <QUrl>
-//#include <QDebug>
 #include <QObject>
 #include <QtCore>
 
@@ -39,26 +38,15 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-//this function is just to test the label output
 //to-do: display help
 void MainWindow::on_bt_help_released(){
-    lb_long_string += "help";
-    ui->lb_long->setText(lb_long_string);
-    QDesktopServices::openUrl(QUrl("../src/help.html", QUrl::TolerantMode));
+    QDesktopServices::openUrl(QUrl("https://kremenkova.github.io/help.html", QUrl::TolerantMode));
 }
 
 //add digit to string and display it
 void MainWindow::bt_digit_pressed(){
-    //if true, clear lb_number for a new input
-    if (operation_pressed){
-        lb_number_string = "";
-        operation_pressed = false;
-    }
     QPushButton * button = (QPushButton*)sender();
-    lb_long_string += button->text();
-    ui->lb_long->setText(lb_long_string);
-    lb_number_string += button->text();
-    ui->lb_number->setText(lb_number_string);
+    write_number_on_display(button->text());
 }
 
 void MainWindow::on_bt_point_released(){
@@ -93,27 +81,79 @@ void MainWindow::on_bt_sign_released(){
 }
 
 void MainWindow::on_bt_inverse_released(){
-    if (!operation_pressed){ //if the last pressed button was number - invert, otherwise do nothing        
-        lb_long_string.chop(lb_number_string.length()); //cuts the last number and replaces it with inverted one
-        double num = inverse(lb_number_string.toDouble());
-        lb_number_string = QString::number(num);
-        lb_long_string.append(lb_number_string); //appends new inverted number at the end of the string
+    if (!operation_pressed){ //if the last pressed button was number - invert, otherwise do nothing  
+        if (negative){ 
+            lb_long_string.remove(lb_long_string.length() - lb_number_string.length() - 1, lb_number_string.length()); //cuts the last number and replaces it with inverted one
+            double num = inverse(lb_number_string.toDouble());
+            lb_number_string = QString::number(num);
+            lb_long_string.insert(lb_long_string.length() - 1, lb_number_string); //appends new inverted number at the end of the string
+        }
+        else{
+            lb_long_string.chop(lb_number_string.length()); //cuts the last number and replaces it with inverted one
+            double num = inverse(lb_number_string.toDouble());
+            lb_number_string = QString::number(num);
+            lb_long_string.append(lb_number_string); //appends new inverted number at the end of the string
+        }
         ui->lb_long->setText(lb_long_string);
         ui->lb_number->setText(lb_number_string);
     }
 }
 
-void MainWindow::bt_basic_op_pressed(){
+/*void MainWindow::bt_basic_op_pressed(){
     operation_pressed = true;    
     QPushButton * button = (QPushButton*)sender();
     if (check_errors(button->text())){
         return;
     }
     lb_long_string += button->text();
-    ui->lb_long->setText(lb_long_string);        
+    ui->lb_long->setText(lb_long_string);
     //execution of the operation
     evaluate(1);
     operation = button->text();
+}*/
+void MainWindow::on_bt_plus_released(){
+    operation_pressed = true;    
+    if (check_errors("+")){
+        return;
+    }
+    lb_long_string += "+";
+    ui->lb_long->setText(lb_long_string);
+    //execution of the operation
+    evaluate(1);
+    operation = "+";
+}
+void MainWindow::on_bt_minus_released(){
+    operation_pressed = true;    
+    if (check_errors("-")){
+        return;
+    }
+    lb_long_string += "-";
+    ui->lb_long->setText(lb_long_string);
+    //execution of the operation
+    evaluate(1);
+    operation = "-";
+}
+void MainWindow::on_bt_multiply_released(){
+    operation_pressed = true;    
+    if (check_errors("*")){
+        return;
+    }
+    lb_long_string += "*";
+    ui->lb_long->setText(lb_long_string);
+    //execution of the operation
+    evaluate(1);
+    operation = "*";
+}
+void MainWindow::on_bt_divide_released(){
+    operation_pressed = true;    
+    if (check_errors("/")){
+        return;
+    }
+    lb_long_string += "/";
+    ui->lb_long->setText(lb_long_string);
+    //execution of the operation
+    evaluate(1);
+    operation = "/";
 }
     
 void MainWindow::on_bt_modulo_released(){
@@ -370,4 +410,106 @@ bool MainWindow::check_errors(QString bt_check){
         return true;
     }    
     return false;
+}
+
+void MainWindow::write_number_on_display(QString number){
+    //if true, clear lb_number for a new input
+    if (operation_pressed){
+        lb_number_string = "";
+        operation_pressed = false;
+    }
+    lb_long_string += number;
+    ui->lb_long->setText(lb_long_string);
+    lb_number_string += number;
+    ui->lb_number->setText(lb_number_string);
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event){
+    switch (event->key())
+    {
+    case Qt::Key_H:
+        on_bt_help_released();
+        break;   
+    case Qt::Key_0:
+        write_number_on_display("0");
+        break;
+    case Qt::Key_1:
+        write_number_on_display("1");
+        break;
+    case Qt::Key_2:
+        write_number_on_display("2");
+        break;
+    case Qt::Key_3:
+        write_number_on_display("3");
+        break;
+    case Qt::Key_4:
+        write_number_on_display("4");
+        break;
+    case Qt::Key_5:
+        write_number_on_display("5");
+        break;
+    case Qt::Key_6:
+        write_number_on_display("6");
+        break;
+    case Qt::Key_7:
+        write_number_on_display("7");
+        break;
+    case Qt::Key_8:
+        write_number_on_display("8");
+        break;
+    case Qt::Key_9:
+        write_number_on_display("9");
+        break;
+    case Qt::Key_Period:
+        on_bt_point_released();
+        break;
+    case Qt::Key_Comma:
+        on_bt_point_released();
+        break;
+    //+/- ???
+    //1/x ???
+    case Qt::Key_Plus:
+        on_bt_plus_released();
+        break;
+    case Qt::Key_Minus:
+        on_bt_minus_released();
+        break;
+    case Qt::Key_Asterisk:
+        on_bt_multiply_released();
+        break;
+    case Qt::Key_Slash:
+        on_bt_divide_released();
+        break;
+    case Qt::Key_Percent:
+        on_bt_modulo_released();
+        break;
+    //abs ???    
+    case Qt::Key_S:
+        on_bt_square_released();
+        break;
+    case Qt::Key_E:
+        on_bt_exp_released();
+        break;
+    case Qt::Key_Q:
+        on_bt_square_root_released();
+        break;
+    case Qt::Key_R:
+        on_bt_n_root_released();
+        break;
+    case Qt::Key_Exclam:
+        on_bt_factorial_released();
+        break;
+    case Qt::Key_Equal:
+        on_bt_equal_released();
+        break;
+    case Qt::Key_A:
+        on_bt_ans_released();
+        break;
+    case Qt::Key_C:
+        on_bt_ac_released();
+        break;
+
+    default:
+        break;
+    }
 }
