@@ -58,7 +58,7 @@ double absolute(double num) {
 double sign(double num) {
     return -num;
 }
-double inverse(double num){
+double inverse(double num) {
     if (num == 0) return ERROR_DIVIDE_ZERO;
     return divide(1, num);
 }
