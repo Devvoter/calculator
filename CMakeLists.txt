@@ -69,18 +69,18 @@ add_executable(stddev profiling/stddev.cpp lib/mathLib.cpp)
 target_compile_options(stddev PRIVATE -pg -O0 -g)
 target_link_options(stddev PRIVATE -pg)
 
-#----DOXYGEN----
-# find_package(Doxygen REQUIRED)
-# if(Doxygen_FOUND)
-#     add_custom_target(docs ALL
-#         COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
-#         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-#         COMMENT "Generating API documentation with Doxygen"
-#         VERBATIM
-#     )
-# else()
-#     message(STATUS "Doxygen not found, skipping documentation")
-# endif()
+# ----DOXYGEN----
+find_package(Doxygen REQUIRED)
+if(Doxygen_FOUND)
+    add_custom_target(docs ALL
+        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        COMMENT "Generating API documentation with Doxygen"
+        VERBATIM
+    )
+else()
+    message(STATUS "Doxygen not found, skipping documentation")
+endif()
 
 #----Finalization for Qt----
 if (QT_VERSION_MAJOR EQUAL 6)
@@ -107,3 +107,42 @@ install(FILES src/${PROJECT_NAME}.png DESTINATION /usr/share/icons/hicolor/512x5
 #install(FILES src/uinstall.sh DESTINATION /opt/${PROJECT})
 
 include(CPack)
+
+
+#----Commands for Makefile----
+
+add_custom_target(run
+    COMMAND $<TARGET_FILE:calculator>
+    DEPENDS calculator
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    COMMENT "Running the application"
+)
+
+add_custom_target(profile
+    DEPENDS stddev
+)
+
+add_custom_target(clean-all
+    COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}
+    COMMENT "Removing all files in the build directory"
+)
+
+
+add_custom_target(bundle-repo
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/../repo
+    COMMAND git bundle create ${CMAKE_BINARY_DIR}/../repo/repo.bundle --all
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Creating a bundle of the entire git repository including the history"
+)
+
+
+add_custom_target(pack 
+    COMMAND ${CMAKE_COMMAND} -E make_directory repo
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_BINARY_DIR}/../install repo/installers
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_BINARY_DIR}/../docs repo/docs
+    COMMAND ${CMAKE_COMMAND} -E tar "cvf" "${CMAKE_BINARY_DIR}/../xlogin01_xlogin02_xlogin03_xlogin04.zip" --format=zip repo
+    DEPENDS bundle-repo
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/..
+    COMMENT "Packing the project, installers, and documentation into a zip file"
+)
+
