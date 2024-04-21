@@ -1,0 +1,64 @@
+## Plán Don't IVS Yourself
+
+Za programovací jazyk (backend) sme si zvolili C++, a vizuálnu časť budeme vytvárať s pomocou knižnice Qt (frontend).
+Aplikácia je primárne navrhnutá pre platformu Linux.
+
+Termíny osobných stretnutí sme si stanovili pevne na každý pondelok o 17:00-19:00 a v piatok o 14:00-16:00 (v priestoroch školy). Časy sme vybrali tak aby to každému, čo najviac vyhovovalo. Avšak počítali sme aj s tým, že možno nie každý sa bude môcť dostaviť na strenutie. Preto sme sa dohodli, ak daný človek bude môcť, tak sa pripojí cez hovor. Ak to nebude realizovatelné ani cez hovor, spíše sa súhrn stretnutia, čo sme riešili a ako budeme poprípade ďalej postupovať. 
+
+## Správu verzií sme vyriešili za pomoci Gitu. Repozitár máme na IVS serveri.
+
+## Rozdelenie úloh:
+-xpylypd00 : testy, základné mat. operácie, profiling, Makefile-Lin
+-xvesela00 : založenie git repozitára  a jeho správa, pokročilé mat. operácie, testy pre zakladné mat. operácie, Makefile-Win
+-xkremee00 : GUI, nápoveda, testy pre pokročilé mat. operácie, Makefile-Win
+-xcomovj00 : dokumentácia, prezentácia, inštalátor, uživateľská príručka, mockup, Makefile-Lin
+
+## Stanovené termíny: 
+
+- do 12.03 (utorok)
+	Všetci:
+	- Základný návrh kalkulačky
+	- Plán
+	- Príprava prostredia - Git, Ubuntu 
+
+- do 22.03 (piatok)
+	- Testy pre základné mat. operácie 
+
+- do 29.03 (piatok)
+	- GUI
+	- Základné mat. operácie
+
+- do 05.04 (piatok)
+	- Testy pokročilých mat. operácií 
+	- Profiling 
+
+- do 08.04 (pondelok)
+	- Inštalátor 
+	- Pokročilé mat. operácie 
+	- Mockup
+
+- do 15.04 (pondelok)
+	- Makefile
+	- Nápoveda
+
+- do 19.04 (piatok)!
+	Všetci:
+	- Integrácia 
+	- Debugging
+
+- do 22.04 (pondelok)
+	- Dokumentácie
+
+- do 24.05 (piatok) 
+	- Prezentácia 
+
+
+## Komunikačné kanály:
+
+- Discord: Na hlavnú komunikáciu sme si zvolili Discord, kde sme si zvolili striktné pravidlá. Máme vlastný server, ktorý je rozdelený na jednotlivé sekcie projektu. Ak sa bude riešiť konkrétny problém, vytvorí sa v kanáli "thread", aby sa lepšie pristupovalo spätne k histórií komunikácie. Ďalšie pravidlo ktoré sme si stanovili je, ak niekto napíše nejaký oznam alebo informáciu, zvyšok musí reagovať na správu reakciou. Aby bolo jasné, že bol o tom informovaný. Taktiež bude Discord využívaný na hovory, ak nastane súrny problém alebo pri absencii pri dohodnutom osobnom stretnutí. Pri práci musí byť každý online.
+
+- Tel. čísla a iné kontaky: Všetky dôležité kontakty máme pokope na separátnom kanály. Zdieľali sme medzi sebou, školské maily, osobné maily a taktiež telefónne čísla. 
+
+- Jira Project Tracking Software: Pre detailnejší prehľad plánovania, sme si zvolili Jira board, kde sme si rozdelili úlohy. Pred prácou je každý povinný skontrolovať Jiru.
+
+- Visual Studio Live Share: V prípade ak niekto bude potrebovať pomoc, pre väčšiu efektivitu sme sa dohodli na používaní VSLS.
