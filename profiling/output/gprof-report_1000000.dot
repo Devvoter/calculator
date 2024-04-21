@@ -1,0 +1,13 @@
+digraph {
+	graph [fontname=Arial, nodesep=0.125, ranksep=0.25];
+	node [fontcolor=white, fontname=Arial, height=0, shape=box, style=filled, width=0];
+	edge [fontname=Arial];
+	1 [color="#8bcd07", fontcolor="#ffffff", fontsize="10.00", label="main\n66.67%\n(0.00%)"];
+	1 -> 3 [arrowsize="0.58", color="#0b9f6e", fontcolor="#0b9f6e", fontsize="10.00", label="33.33%\n1×", labeldistance="1.33", penwidth="1.33"];
+	1 -> 4 [arrowsize="0.58", color="#0b9f6e", fontcolor="#0b9f6e", fontsize="10.00", label="33.33%\n1000001×", labeldistance="1.33", penwidth="1.33"];
+	2 [color="#0b9f6e", fontcolor="#ffffff", fontsize="10.00", label="_init\n33.33%\n(33.33%)"];
+	3 [color="#0b9f6e", fontcolor="#ffffff", fontsize="10.00", label="root(double, double)\n33.33%\n(0.00%)\n1×"];
+	3 -> 5 [arrowsize="0.58", color="#0b9f6e", fontcolor="#0b9f6e", fontsize="10.00", label="33.33%\n27×", labeldistance="1.33", penwidth="1.33"];
+	4 [color="#0b9f6e", fontcolor="#ffffff", fontsize="10.00", label="exponent(double, double)\n33.33%\n(33.33%)\n1000027×"];
+	5 [color="#0b9f6e", fontcolor="#ffffff", fontsize="10.00", label="absolute(double)\n33.33%\n(33.33%)\n27×"];
+}

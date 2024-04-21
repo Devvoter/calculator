@@ -1,58 +1,36 @@
-#include <iostream>
-#include <vector>
-#include <cmath>
-#include <numeric>
 #include "../include/main.h"
+#include <iostream>
 
-// Function to calculate the mean of a dataset.
-double calculateMean(const std::vector<double>& data) {
-    double sum = 0.0;
-    // Accumulate the sum of all data points.
-    for (double value : data) {
-        sum = add(sum, value);
-    }
-    // Divide the sum by the number of data points to get the mean.
-    return divide(sum, data.size());
-}
+using namespace std;
 
-// Function to calculate the variance of a dataset.
-double calculateVariance(const std::vector<double>& data, double mean) {
-    double variance = 0.0;
-    // Compute the sum of squared differences from the mean.
-    for (double value : data) {
-        double diff = subtract(value, mean);
-        variance = add(variance, multiply(diff, diff));
-    }
-    // Divide by the number of data points minus one to get the variance.
-    // This uses Bessel's correction to provide an unbiased estimate.
-    return divide(variance, subtract(data.size(), 1));
-}
-
-// Function to calculate the standard deviation from the variance.
-double calculateStdDev(double variance) {
-    // Take the square root of the variance to get the standard deviation.
-    return root(variance, 2);
-}
-
-int main() {
-    std::vector<double> data;
-    double value;
+/**
+ * @brief Function to calculate standard deviation.
+ * @return 0 if successful, -1 if no numbers were provided.
+ */
+int main(int argc, char *argv[]){
+    // Declaration of necessary variables
+    double number, deviation, mean, sum_1 = 0, sum_2 = 0, var = 0, count = 0;
     
-    // Read data from stdin until EOF (End of File).
-    while (std::cin >> value) {
-        // Add each value to the dataset.
-        data.push_back(value);
+    // Reading numbers from standard input
+    while(fscanf(stdin, "%lf", &number) != EOF){
+        sum_1 = add(sum_1, number); // Calculating the sum of the numbers
+        sum_2 = add(sum_2, exponent(number, 2)); // Calculating the sum of the squares of the numbers
+        count = add(count, 1); // Incrementing the total number count
+    }
+    // Error if no numbers were entered
+    if(count == 0){
+        fprintf(stderr, "Error, no number provided.\n");
+        return -1;
     }
     
-    // Calculate the mean of the dataset.
-    double mean = calculateMean(data);
-    // Calculate the variance of the dataset.
-    double variance = calculateVariance(data, mean);
-    // Calculate the standard deviation of the dataset.
-    double stdDev = calculateStdDev(variance);
-
-    // Output the standard deviation to the standard output.
-    std::cout << stdDev << std::endl;
+    mean = divide(sum_1, count); // Calculating the mean
+    var = subtract(sum_2, multiply(exponent(mean, 2), count)); // Calculating the variance
+    // CORRECTION: Now subtracting 1 from the total number count to ensure the correct result
+    var = divide(var, subtract(count, 1)); // Dividing the variance by the total number count
+    deviation = root(var, 2); // Calculating the square root of the variance
+    
+    // Printing the standard deviation to standard output
+    cout << deviation << endl;
 
     return 0;
 }

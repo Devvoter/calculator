@@ -66,7 +66,7 @@ gtest_discover_tests(runTests)
 
 #----Profiling Executable----
 add_executable(stddev profiling/stddev.cpp lib/mathLib.cpp)
-target_compile_options(stddev PRIVATE -pg)
+target_compile_options(stddev PRIVATE -pg -O0 -g)
 target_link_options(stddev PRIVATE -pg)
 
 #----DOXYGEN----

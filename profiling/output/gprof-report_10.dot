@@ -1,0 +1,14 @@
+digraph {
+	graph [fontname=Arial, nodesep=0.125, ranksep=0.25];
+	node [fontcolor=white, fontname=Arial, height=0, shape=box, style=filled, width=0];
+	edge [fontname=Arial];
+	8 [color="#ff0000", fontcolor="#ffffff", fontsize="10.00", label="exponent(double, double)\n100.00%\n(100.00%)\n37×"];
+	9 [color="#ff0000", fontcolor="#ffffff", fontsize="10.00", label="add(double, double)\n100.00%\n(100.00%)\n30×"];
+	10 [color="#ff0000", fontcolor="#ffffff", fontsize="10.00", label="absolute(double)\n100.00%\n(100.00%)\n27×"];
+	11 [color="#ff0000", fontcolor="#ffffff", fontsize="10.00", label="divide(double, double)\n100.00%\n(100.00%)\n2×"];
+	12 [color="#ff0000", fontcolor="#ffffff", fontsize="10.00", label="subtract(double, double)\n100.00%\n(100.00%)\n2×"];
+	13 [color="#ff0000", fontcolor="#ffffff", fontsize="10.00", label="root(double, double)\n100.00%\n(100.00%)\n1×"];
+	13 -> 8 [arrowsize="1.00", color="#ff0000", fontcolor="#ff0000", fontsize="10.00", label="100.00%\n26×", labeldistance="4.00", penwidth="4.00"];
+	13 -> 10 [arrowsize="1.00", color="#ff0000", fontcolor="#ff0000", fontsize="10.00", label="100.00%\n27×", labeldistance="4.00", penwidth="4.00"];
+	14 [color="#ff0000", fontcolor="#ffffff", fontsize="10.00", label="multiply(double, double)\n100.00%\n(100.00%)\n1×"];
+}
