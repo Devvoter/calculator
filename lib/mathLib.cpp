@@ -3,13 +3,8 @@
 // date: 29.03.2024
 // autors:
 // 
-
 #include "../include/main.h"
 
-// #define ERROR_DIVIDE_ZERO -1
-// #define ERROR_OUT_OF_RANGE 1337
-// #define MAX_FAKTORIAL 165
-// #define EPSILON 1e-10
 // +
 double add(double num1, double num2) {
     return (num1 + num2);
