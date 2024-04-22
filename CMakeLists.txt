@@ -12,14 +12,14 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 #----Include directories----
-set(INCLUDE_DIRECTORIES include)
+set(INCLUDE_DIRECTORIES src/include)
 
 #----Files----
-set(LIB_FILES lib/mathLib.cpp)
+set(LIB_FILES src/lib/mathLib.cpp)
 set(SRC_FILES src/main.cpp src/mainwindow.cpp)
 set(UI_FILES src/mainwindow.ui)
 set(TEST_FILES src/mainMathFunctionTests.cpp src/advancedMathFunctionTests.cpp)
-set(IN_FILES include/main.h include/mainwindow.h include/ui_mainwindow.h)
+set(IN_FILES src/include/main.h src/include/mainwindow.h src/include/ui_mainwindow.h)
 
 #----Find Qt package----
 set(Qt6_DIR "/path/to/qt6/lib/cmake/Qt6")
@@ -65,7 +65,7 @@ include(GoogleTest)
 gtest_discover_tests(runTests)
 
 #----Profiling Executable----
-add_executable(stddev profiling/stddev.cpp lib/mathLib.cpp)
+add_executable(stddev src/stddev.cpp src/lib/mathLib.cpp)
 target_compile_options(stddev PRIVATE -pg -O0 -g)
 target_link_options(stddev PRIVATE -pg)
 
@@ -73,7 +73,7 @@ target_link_options(stddev PRIVATE -pg)
 find_package(Doxygen REQUIRED)
 if(Doxygen_FOUND)
     add_custom_target(docs ALL
-        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
+        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/src/Doxyfile
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM
@@ -105,6 +105,8 @@ install(DIRECTORY src/ DESTINATION /opt/${PROJECT_NAME})
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/${PROJECT_NAME}.desktop" DESTINATION /usr/share/applications)
 install(FILES src/${PROJECT_NAME}.png DESTINATION /usr/share/icons/hicolor/512x512/apps)
 #install(FILES src/uinstall.sh DESTINATION /opt/${PROJECT})
+
+install(TARGETS stddev DESTINATION /usr/bin)
 
 include(CPack)
 
