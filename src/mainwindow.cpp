@@ -26,11 +26,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->bt_9, SIGNAL(released()), this, SLOT(bt_digit_pressed()));
     connect(ui->bt_00, SIGNAL(released()), this, SLOT(bt_digit_pressed()));
 
-    //connecting basic operations buttons
-    connect(ui->bt_plus, SIGNAL(released()), this, SLOT(bt_basic_op_pressed()));
-    connect(ui->bt_minus, SIGNAL(released()), this, SLOT(bt_basic_op_pressed()));
-    connect(ui->bt_multiply, SIGNAL(released()), this, SLOT(bt_basic_op_pressed()));
-    connect(ui->bt_divide, SIGNAL(released()), this, SLOT(bt_basic_op_pressed()));
 }
 
 MainWindow::~MainWindow()
@@ -99,18 +94,6 @@ void MainWindow::on_bt_inverse_released(){
     }
 }
 
-/*void MainWindow::bt_basic_op_pressed(){
-    operation_pressed = true;    
-    QPushButton * button = (QPushButton*)sender();
-    if (check_errors(button->text())){
-        return;
-    }
-    lb_long_string += button->text();
-    ui->lb_long->setText(lb_long_string);
-    //execution of the operation
-    evaluate(1);
-    operation = button->text();
-}*/
 void MainWindow::on_bt_plus_released(){
     operation_pressed = true;    
     if (check_errors("+")){
@@ -465,9 +448,13 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         break;
     case Qt::Key_Comma:
         on_bt_point_released();
+        break;    
+    case Qt::Key_G:
+        on_bt_sign_released();
         break;
-    //+/- ???
-    //1/x ???
+    case Qt::Key_I:
+        on_bt_inverse_released();
+        break;
     case Qt::Key_Plus:
         on_bt_plus_released();
         break;
@@ -482,8 +469,11 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         break;
     case Qt::Key_Percent:
         on_bt_modulo_released();
+        break;    
+    case Qt::Key_B:
+        on_bt_abs_released();
         break;
-    //abs ???    
+     
     case Qt::Key_S:
         on_bt_square_released();
         break;
@@ -508,7 +498,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
     case Qt::Key_C:
         on_bt_ac_released();
         break;
-
     default:
         break;
     }
