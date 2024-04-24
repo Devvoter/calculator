@@ -169,7 +169,7 @@ add_custom_target(pack
     COMMAND ${CMAKE_COMMAND} -E make_directory repo
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_BINARY_DIR}/../install repo/installers
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_BINARY_DIR}/../docs repo/docs
-    COMMAND ${CMAKE_COMMAND} -E tar "cvf" "${CMAKE_BINARY_DIR}/../xlogin01_xlogin02_xlogin03_xlogin04.zip" --format=zip repo
+    COMMAND ${CMAKE_COMMAND} -E tar "cvf" "${CMAKE_BINARY_DIR}/../xpylypd00_xvesela00_xkremee00_xcomovj00.zip" --format=zip repo
     DEPENDS bundle-repo
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/..
     COMMENT "Packing the project, installers, and documentation into a zip file"
