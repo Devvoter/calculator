@@ -1,0 +1,1 @@
+Na odhalení chyb v projektu jsme použili nastroj gdb a qtCreator

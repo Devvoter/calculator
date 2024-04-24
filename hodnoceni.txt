@@ -1,4 +1,4 @@
-xlogin01 100 (základ GUI a základní mat. operace)
-xlogin02 100 (pokročilé mat. operace)
-xlogin03 90 (profiling, instalátory)
-xlogin04 110 (testy, dokumentace)
+xpylypd00 100 (testy, základné mat. operácie, profiling, CMakefile)
+xvesela00 100 (založenie git repozitára  a jeho správa, pokročilé mat. operácie, testy pre zakladné mat. operácie, CMakefile)
+xkremee00 100 (GUI, nápoveda, testy pre pokročilé mat. operácie, Makefile-Windows)
+xcomovj00 100 (dokumentácia, prezentácia, inštalátor, uživateľská príručka, mockup, CMakefile)
