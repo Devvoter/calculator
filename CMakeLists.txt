@@ -87,29 +87,56 @@ if (QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(calculator)
 endif()
 
-#----Install----
+# #----Install----
+# set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
+# set(CPACK_PACKAGE_VENDOR "DIY")
+# set(CPACK_PACKAGE_CONTACT "xcomovj00@stud.fit.vutbr.cz")
+# set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Simple calculator")
+# set(CPACK_PACKAGE_VERSION "1.0-Alpha")
+# set(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME}")
+# set(CPACK_OUTPUT_FILE_PREFIX "${CMAKE_SOURCE_DIR}/src")
+# set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Jaroslava Comová <${CPACK_PACKAGE_CONTACT}>")
+# set(CPACK_GENERATOR DEB)
+# set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/install")
+# set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS YES)
+
+# install(TARGETS ${PROJECT_NAME} DESTINATION /usr/bin)
+# install(DIRECTORY src/ DESTINATION /opt/${PROJECT_NAME})
+# install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/${PROJECT_NAME}.desktop" DESTINATION /usr/share/applications)
+# install(FILES src/${PROJECT_NAME}.png DESTINATION /usr/share/icons/hicolor/512x512/apps)
+
+# install(TARGETS stddev DESTINATION /usr/bin)
+
+# include(CPack)
+
+
+# Install instructions for calculator
+install(TARGETS calculator DESTINATION /usr/bin COMPONENT Calculator)
+install(DIRECTORY src/ DESTINATION /opt/calculator COMPONENT Calculator)
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/calculator.desktop" DESTINATION /usr/share/applications COMPONENT Calculator)
+install(FILES src/calculator.png DESTINATION /usr/share/icons/hicolor/512x512/apps COMPONENT Calculator)
+
+# Install instructions for stddev
+install(TARGETS stddev DESTINATION /usr/bin COMPONENT StdDev)
+install(DIRECTORY src/ DESTINATION /opt/stddev COMPONENT StdDev)
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/stddev.desktop" DESTINATION /usr/share/applications COMPONENT StdDev)
+install(FILES src/stddev.png DESTINATION /usr/share/icons/hicolor/512x512/apps COMPONENT StdDev)
+
+# CPack settings
 set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
 set(CPACK_PACKAGE_VENDOR "DIY")
 set(CPACK_PACKAGE_CONTACT "xcomovj00@stud.fit.vutbr.cz")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Simple calculator")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Simple calculator and stddev applications")
 set(CPACK_PACKAGE_VERSION "1.0-Alpha")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME}")
-set(CPACK_OUTPUT_FILE_PREFIX "${CMAKE_SOURCE_DIR}/src")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Jaroslava Comová <${CPACK_PACKAGE_CONTACT}>")
 set(CPACK_GENERATOR DEB)
 set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/install")
+set(CPACK_DEBIAN_COMPONENT_INSTALL ON)
 set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS YES)
-
-install(TARGETS ${PROJECT_NAME} DESTINATION /usr/bin)
-install(DIRECTORY src/ DESTINATION /opt/${PROJECT_NAME})
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/${PROJECT_NAME}.desktop" DESTINATION /usr/share/applications)
-install(FILES src/${PROJECT_NAME}.png DESTINATION /usr/share/icons/hicolor/512x512/apps)
-
-install(TARGETS stddev DESTINATION /usr/bin)
+set(CPACK_COMPONENTS_ALL Calculator StdDev)
 
 include(CPack)
-
-
 #----Commands for Makefile----
 
 add_custom_target(run

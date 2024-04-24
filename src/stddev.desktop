@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/stddev
+Icon=stddev
+Name=stddev
+Terminal=true
+Categories=Utility;Application;
