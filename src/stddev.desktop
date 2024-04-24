@@ -3,5 +3,5 @@ Type=Application
 Exec=/usr/bin/stddev
 Icon=stddev
 Name=stddev
-Terminal=true
+Terminal=false
 Categories=Utility;Application;
