@@ -1,3 +1,7 @@
+/**
+ * @file advancedMathFunctionTests.cpp
+ * @authors {Denys Pylypenko, Adam Veselý, Eliška Křeménková, Jaroslava Comová}
+*/
 #include "include/main.h"
 
 #include <gtest/gtest.h>
@@ -98,3 +102,5 @@ TEST_F(TestMainFunkce, RooTest_4) {
 TEST_F(TestMainFunkce, RooTest_5) {
     EXPECT_EQ(-2.0, root(-8.0, 3.0));
 }
+
+/*** End of file advancedMathFunctionTests.cpp ***/

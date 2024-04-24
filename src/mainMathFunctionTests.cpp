@@ -1,3 +1,7 @@
+/**
+ * @file mainMathFunctionTests.cpp
+ * @authors {Denys Pylypenko, Adam Veselý, Eliška Křeménková, Jaroslava Comová}
+*/
 #include "include/main.h"
 
 #include <gtest/gtest.h>
@@ -50,3 +54,5 @@ TEST_F(TestMainFunkce, DivTest_2) {
 TEST_F(TestMainFunkce, DivTest_3) {
     EXPECT_EQ(ERROR_DIVIDE_ZERO, divide(13.31, 0.0));
 }
+
+/*** End of file mainMathFunctionTests.cpp ***/

@@ -1,27 +1,27 @@
 /**
  * @file stddev.cpp
+ * @authors {Denys Pylypenko, Adam Veselý, Eliška Křeménková, Jaroslava Comová}
  */
 #include "../include/main.h"
 
-// +
 double add(double num1, double num2) {
     return (num1 + num2);
 }
-// -
+
 double subtract(double num1, double num2) {
     return (num1 - num2);
 }
-// *
+
 double multiply(double num1, double num2) {
     return (num1 * num2);
 }
-// /
+
 double divide(double num1, double num2) {
 
     if(num2 == 0) return ERROR_DIVIDE_ZERO;
     return (num1 / num2);
 }
-// x!
+
 double factorial(double num) {
 
     if (num < 0 || num > MAX_FAKTORIAL) return ERROR_VALUE;
@@ -29,7 +29,7 @@ double factorial(double num) {
 
     return (num * factorial(num - 1));
 }
-// x^
+
 double exponent(double num, double exp) {
 
     if (exp < 0  || ((int)(exp) != exp)) return ERROR_VALUE; // in task exp must natural number
@@ -42,28 +42,26 @@ double exponent(double num, double exp) {
 
     return result;
 }
-// |x|
+
 double absolute(double num) {
     if (num < 0) return -num;
     return num;
 }
-// x --> -x
+
 double sign(double num) {
     return -num;
 }
+
 double inverse(double num) {
     if (num == 0) return ERROR_DIVIDE_ZERO;
     return divide(1, num);
 }
 
-// %
 double modulo(double num1, double num2) {
     return (int)num1 % (int)num2;
 }
 
-// root(4,2) = 2.0
-// Function to calculate the nth root of a number using Newton's method
-double root(double num, double root) {
+double root(double num, double root) { // Function to calculate the nth root of a number using Newton's method
     if (root <= 0 || (int)(root) != root) return ERROR_VALUE; // root must be a positive integer
     if (num < 0 && (int)(root) % 2 == 0) return ERROR_VALUE; // No even root of a negative number
 

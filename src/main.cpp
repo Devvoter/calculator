@@ -1,3 +1,7 @@
+/**
+ * @file main.cpp
+ * @authors {Denys Pylypenko, Adam Veselý, Eliška Křeménková, Jaroslava Comová}
+*/
 #include "include/main.h"
 #include "include/mainwindow.h"
 
@@ -10,3 +14,5 @@ int main(int argc, char *argv[]) {
     w.show();
     return a.exec();
 }
+
+/*** End of file main.cpp ***/
