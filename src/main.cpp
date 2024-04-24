@@ -1,6 +1,8 @@
 /**
  * @file main.cpp
- * @authors {Denys Pylypenko, Adam Veselý, Eliška Křeménková, Jaroslava Comová}
+ * @authors Denys Pylypenko, Adam Veselý, Eliška Křeménková, Jaroslava Comová
+ * 
+ * @brief Main file of the project.
 */
 #include "include/main.h"
 #include "include/mainwindow.h"

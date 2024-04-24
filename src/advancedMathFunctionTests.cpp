@@ -1,6 +1,8 @@
 /**
  * @file advancedMathFunctionTests.cpp
- * @authors {Denys Pylypenko, Adam Veselý, Eliška Křeménková, Jaroslava Comová}
+ * @authors Denys Pylypenko, Adam Veselý, Eliška Křeménková, Jaroslava Comová
+ * 
+ * @brief Google tests for advanced math functions
 */
 #include "include/main.h"
 

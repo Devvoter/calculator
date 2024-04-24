@@ -1,6 +1,8 @@
 /**
  * @file stddev.cpp
- * @authors {Denys Pylypenko, Adam Veselý, Eliška Křeménková, Jaroslava Comová}
+ * @authors Denys Pylypenko, Adam Veselý, Eliška Křeménková, Jaroslava Comová
+ * 
+ * @brief Implementation of all calculator functions
  */
 #include "../include/main.h"
 

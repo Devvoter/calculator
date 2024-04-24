@@ -1,13 +1,15 @@
+/**
+ * @file stddev.cpp
+ * @authors Denys Pylypenko, Adam Veselý, Eliška Křeménková, Jaroslava Comová
+ * 
+ * @brief Function to calculate standard deviation.
+ * @return 0 if successful, -1 if no numbers were provided.
+ */
+
 #include "include/main.h"
 #include <iostream>
 
 using namespace std;
-
-/**
- * @file stddev.cpp
- * @brief Function to calculate standard deviation.
- * @return 0 if successful, -1 if no numbers were provided.
- */
 
 int main(int argc, char *argv[]){
     // Declaration of necessary variables

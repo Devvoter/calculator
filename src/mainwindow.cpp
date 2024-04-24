@@ -1,6 +1,8 @@
 /**
  * @file mainwindow.cpp
- * @authors {Denys Pylypenko, Adam Veselý, Eliška Křeménková, Jaroslava Comová}
+ * @authors Denys Pylypenko, Adam Veselý, Eliška Křeménková, Jaroslava Comová
+ * 
+ * @brief The main file for the calculator GUI
 */
 #include "include/mainwindow.h"
 #include "include/ui_mainwindow.h"

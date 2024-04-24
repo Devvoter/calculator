@@ -1,6 +1,6 @@
 /**
  * @file main.h
- * @authors {Denys Pylypenko, Adam Veselý, Eliška Křeménková, Jaroslava Comová}
+ * @authors Denys Pylypenko, Adam Veselý, Eliška Křeménková, Jaroslava Comová
  * 
  * @brief Header file for main.cpp
 */
