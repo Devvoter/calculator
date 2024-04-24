@@ -1,8 +1,6 @@
-// Project name: Calculator
-// file: mathLib.h
-// date: 29.03.2024
-// autors:
-// 
+/**
+ * @file stddev.cpp
+ */
 #include "../include/main.h"
 
 // +
@@ -80,3 +78,4 @@ double root(double num, double root) {
     return guess;
 }
 
+/*** End of file mathLib.cpp ***/

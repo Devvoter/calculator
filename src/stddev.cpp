@@ -4,9 +4,11 @@
 using namespace std;
 
 /**
+ * @file stddev.cpp
  * @brief Function to calculate standard deviation.
  * @return 0 if successful, -1 if no numbers were provided.
  */
+
 int main(int argc, char *argv[]){
     // Declaration of necessary variables
     double number, deviation, mean, sum_1 = 0, sum_2 = 0, var = 0, count = 0;
@@ -25,7 +27,7 @@ int main(int argc, char *argv[]){
     
     mean = divide(sum_1, count); // Calculating the mean
     var = subtract(sum_2, multiply(exponent(mean, 2), count)); // Calculating the variance
-    // CORRECTION: Now subtracting 1 from the total number count to ensure the correct result
+    // Now subtracting 1 from the total number count to ensure the correct result
     var = divide(var, subtract(count, 1)); // Dividing the variance by the total number count
     deviation = root(var, 2); // Calculating the square root of the variance
     
@@ -34,3 +36,5 @@ int main(int argc, char *argv[]){
 
     return 0;
 }
+
+/*** End of file stddev.cpp ***/
