@@ -3,9 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Nápověda</title>
 </head>
 <body>
-    <p>Tady bude nápověda</p>
+    <h1>Nápověda pro DIY calculator</h1>
+    <img src="help.jpg" alt="nápověda">
+
+    <h2>Obecná funkčnost</h2>
+    <p>Aplikace zpracovává zadávaná čísla proudově a mezivýsledky vypisuje na displej. Další operace tedy počítá s mezivýsledkem z předchozích výpočtů.
+        Nepočítá se tedy s přednostmi některých matematických operací.</p>
+    <p>Např. 1 + 2 * 3 = 3 * 3 = 9</p>
+
+    <h2>1) Nápověda</h2>
+    <p>Pro zobrazení nápovědy stiskněte tlačítko '?' nebo klávesu 'H'.</p>
+
+    <h2>2) Displej</h2>
+    <p>Na prvním řádku se zobrazí zadávané číslo a po stisknutí operace se zobrazí její výsledek.</p>
+    <p>Na druhém řádku se zobrazuje celý zadaný řetězec čísel a operací až po stisknutí tlačítka '='.</p>
+
+    <h2>3) Tlačítko AC</h2>
+    <p>Umožňuje smazání výpočtu, lze použít klávesu 'A'.</p>
+
+    <h2>4) Pokročilé operace</h2>
+    <p><b>Ans</b> - uloží výsledek z předchozího výrazu a použije ho v novém výrazu. Lze použít klávesu 'A'.</p>
+    <p><b>+/-</b> - změní znaménko zadávaného čísla (např. z čísla '10' udělá '-10'). Použití: zadejte číslo, a pak stiskněte tláčítko '+/-', lze použít klávesu 'G'.</p>
+    <p><b>1/x</b> - převrátí hodnotu zadávaného čísla (např. z čísla '4' udělá '0.25'). Použití: zadejte číslo, a pak stiskněte tláčítko '1/x', lze použít klávesu 'I'.</p>
+    <p><b>x²</b> - umocní číslo dvěma, operace bere jeden argument (lze ji použít několikrát po sobě, např. 2^2^2 = 16). Lze použít kávesu 'S'.</p>
+    <p><b>xⁿ</b> - umocní číslo n, operace bere dva argumenty. Použití: první operand je číslo, druhý je exponent. Lze použít klávesu 'E'.</p>
+    <p><b>√x</b> - vypočítá druhou mocninu, operace bere jeden argument (lze ji použít několikrát po sobě, např. √√16 = 2). Lze použít kávesu 'Q'.</p>
+    <p><b>ⁿ√x</b> - vypočítá n-tou mocninu, operace bere dva argumenty. Použití: první operand je číslo, druhý je mocnina. Lze použít klávesu 'R'.</p>
+    <p><b>%</b> - modulo, operace bere dva argumenty. Použití: první operand je číslo, druhý je dělitel. Lze použít klávesu '%'.</p>
+    <p><b>|x|</b> - absolutní hodnota, operace bere jeden argument. Použití: udělá absolutní hodnotu z celehé výrazu, před stisknutím tlačítka '|x|'. Lze použít klávesu 'B'.</p>
+    <p><b>x!</b> - faktoriál, operace bere jeden argument (lze ji použít několikrát po sobě, např. 3!! = 720). Lze použít klávesu '!'.</p>
+
+    <h2>5) Základní operace</h2>
+    <p>Binární operace násobení, odčítání, násobení, dělení. Lze použít klávesy '+', '-', '*' a '/'.</p>
+
+    <h2>6) Čísla</h2>
+    <p>Pro zadávání čísel je možné použít klávesy '0'-'9'.</p>
+    <p>Pro zadání desetinné tečky lze použít klávesy '.' a ','.</p>
+
+    <h2>7) Rovnítko</h2>
+    <p>Vypíše výsledek pro celý výraz a uloží jej (pro opětovné použití), lze použít klávesu '='.</p>
 </body>
 </html>

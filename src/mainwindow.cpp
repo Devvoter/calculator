@@ -455,6 +455,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
     case Qt::Key_I:
         on_bt_inverse_released();
         break;
+
     case Qt::Key_Plus:
         on_bt_plus_released();
         break;
@@ -467,13 +468,13 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
     case Qt::Key_Slash:
         on_bt_divide_released();
         break;
+        
     case Qt::Key_Percent:
         on_bt_modulo_released();
         break;    
     case Qt::Key_B:
         on_bt_abs_released();
         break;
-     
     case Qt::Key_S:
         on_bt_square_released();
         break;
