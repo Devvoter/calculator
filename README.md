@@ -1,9 +1,5 @@
 # Kalkulačka pre 2. projekt IVS
 
-## Popis 
-
-## Inštalácia 
-
 ## Prostredie
 
 Tento projekt bol vyvíjaný a testovaný v prostredí:

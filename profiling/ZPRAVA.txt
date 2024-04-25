@@ -1,0 +1,32 @@
+Program se na prvním obrázku s 10 voláními nejvíce zdržuje v hlavní funkci (main). Vedlejší volání funkcí standardní knihovny C++ jsou také přítomna, ale jejich dopad na celkový čas běhu je minimální.
+Na druhém obrázku s 1000 voláními začíná funkce add(double, double) zabírat podstatnou část běhového času, což naznačuje možné úzké místo v této funkci.
+Na třetím obrázku, kde je počet volání 1 000 000, se funkce add(double, double) a exponent(double, double) stávají hlavními místy zdržení v programu. To naznačuje, že pro velké vstupy se stávají hlavním bodem, na kterém by se mělo soustředit úsilí o optimalizaci.
+Zajímavé je, že na třetím obrázku podíl času stráveného funkcí exponent(double, double) klesá ve srovnání s funkcí add(double, double), přestože zůstává významný.
+Pozorujeme také zátěž funkce pro vstup-výstup __isoc99_fscanf, která se výrazně zvyšuje s rostoucím počtem vstupů. To ukazuje na to, že proces vstupu dat může také představovat úzké místo při velkých objemech dat.
+Tyto údaje mohou být použity pro další optimalizaci programu, například optimalizací implementace funkce add nebo použitím efektivnějších metod vstupu-výstupu.
+
+Výpočty byly provedeny pomocí callgrind a gprof:
+
+    valgrind --tool=callgrind --version
+    valgrind-3.22.0
+
+    gprof --version
+    GNU gprof verze 2.40-14.fc39
+
+Parametry, které byly použity pro stddev.cpp: -pg -O0 -g
+
+Zpráva o parametrech systému:
+
+-Datum vytvoření: 2024-04-21 21:56:41
+
+-Informace o hardware:
+Model zařízení: HP Laptop 15s-eq1xxx
+Paměť: 16,0 GiB
+Procesor: AMD Ryzen™ 7 4700U s grafikou Radeon™ × 8
+Grafika: AMD Radeon™ Graphics
+
+-Informace o softwaru:
+Verze firmware: F.69
+Název OS: Fedora Linux 39 (Workstation Edition)
+Typ OS: 64-bit
+Verze jádra: Linux 6.8.5-201.fc39.x86_64

@@ -87,29 +87,6 @@ if (QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(calculator)
 endif()
 
-# #----Install----
-# set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
-# set(CPACK_PACKAGE_VENDOR "DIY")
-# set(CPACK_PACKAGE_CONTACT "xcomovj00@stud.fit.vutbr.cz")
-# set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Simple calculator")
-# set(CPACK_PACKAGE_VERSION "1.0-Alpha")
-# set(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME}")
-# set(CPACK_OUTPUT_FILE_PREFIX "${CMAKE_SOURCE_DIR}/src")
-# set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Jaroslava Comová <${CPACK_PACKAGE_CONTACT}>")
-# set(CPACK_GENERATOR DEB)
-# set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/install")
-# set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS YES)
-
-# install(TARGETS ${PROJECT_NAME} DESTINATION /usr/bin)
-# install(DIRECTORY src/ DESTINATION /opt/${PROJECT_NAME})
-# install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/${PROJECT_NAME}.desktop" DESTINATION /usr/share/applications)
-# install(FILES src/${PROJECT_NAME}.png DESTINATION /usr/share/icons/hicolor/512x512/apps)
-
-# install(TARGETS stddev DESTINATION /usr/bin)
-
-# include(CPack)
-
-
 # Install instructions for calculator
 install(TARGETS calculator DESTINATION /usr/bin COMPONENT Calculator)
 install(DIRECTORY src/ DESTINATION /opt/calculator COMPONENT Calculator)
