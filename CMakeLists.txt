@@ -135,20 +135,32 @@ add_custom_target(clean-all
 
 
 add_custom_target(bundle-repo
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/../repo
-    COMMAND git bundle create ${CMAKE_BINARY_DIR}/../repo/repo.bundle --all
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/repo
+    COMMAND git bundle create ${CMAKE_BINARY_DIR}/repo/repo.bundle --all
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     COMMENT "Creating a bundle of the entire git repository including the history"
 )
 
-
 add_custom_target(pack 
-    COMMAND ${CMAKE_COMMAND} -E make_directory repo
-    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_BINARY_DIR}/../install repo/installers
-    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_BINARY_DIR}/../docs repo/docs
-    COMMAND ${CMAKE_COMMAND} -E tar "cvf" "${CMAKE_BINARY_DIR}/../xpylypd00_xvesela00_xkremee00_xcomovj00.zip" --format=zip repo
-    DEPENDS bundle-repo
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/..
-    COMMENT "Packing the project, installers, and documentation into a zip file"
-)
+    COMMAND ${CMAKE_COMMAND} -E remove_directory xpylypd00_xvesela00_xkremee00_xcomovj00
+    COMMAND ${CMAKE_COMMAND} -E make_directory xpylypd00_xvesela00_xkremee00_xcomovj00
+    COMMAND ${CMAKE_COMMAND} -E make_directory xpylypd00_xvesela00_xkremee00_xcomovj00/doc
+    COMMAND ${CMAKE_COMMAND} -E make_directory xpylypd00_xvesela00_xkremee00_xcomovj00/install
+    COMMAND ${CMAKE_COMMAND} -E make_directory xpylypd00_xvesela00_xkremee00_xcomovj00/repo
 
+    # Kopírování repozitáře
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/.git xpylypd00_xvesela00_xkremee00_xcomovj00/repo/.git
+
+    # Kopírování instalátorů
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/*.deb xpylypd00_xvesela00_xkremee00_xcomovj00/install/
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/src/preinst.sh xpylypd00_xvesela00_xkremee00_xcomovj00/install/
+
+    # Kopírování dokumentace
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/docs/ xpylypd00_xvesela00_xkremee00_xcomovj00/doc/
+
+    # Balení do zip
+    COMMAND ${CMAKE_COMMAND} -E tar "cvf" "${CMAKE_SOURCE_DIR}/xpylypd00_xvesela00_xkremee00_xcomovj00.zip" --format=zip xpylypd00_xvesela00_xkremee00_xcomovj00
+    DEPENDS bundle-repo
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    COMMENT "Packing the project into a zip file"
+)
